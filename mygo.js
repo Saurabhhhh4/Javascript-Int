@@ -1,0 +1,169 @@
+//
+
+// shallow copy
+
+// let ghar1 = {
+//   malik: "Saurabbh",
+//   umar: 26,
+//   address: {
+//     sheher: "Bangalore",
+//   },
+// };
+
+// let ghar2 = { ...ghar1 };
+
+// ghar2.address.sheher = "Mumbai";
+// console.log(ghar1.address.sheher); // Output: "Mumbai" 😱
+// console.log(ghar2.address.sheher); // Output: "Mumbai" 😱
+
+//deep copy
+
+// function deepcopy(obj) {
+//   if (typeof obj !== "object" || obj === null) {
+//     return obj;
+//   }
+//   let copy = Array.isArray ? [] : {};
+
+//   for (let key in obj) {
+//     copy[key] = deepcopy(obj[key]);
+//   }
+//   return copy;
+// }
+// let ghar2 = deepcopy(ghar1);
+
+// ghar2.address.sheher = "delhi";
+
+// console.log(ghar1);
+// console.log(ghar2);
+
+// function deepcopy(obj) {
+//   if (typeof obj !== "object" || obj === null) {
+//     return obj;
+//   }
+//   let copy = Array.isArray(obj) ? [] : {};
+//   for (let key in obj) {
+//     copy[key] = deepcopy(obj[key]);
+//   }
+//   return copy;
+// }
+// let obj1 = { name: "saurabh", age: 20, address: { city: "bangalore" } };
+// let obj2 = deepcopy(obj1);
+
+// console.log(obj1);
+// console.log(obj2);
+// console.log(obj1 == obj2);
+
+// =========================================================
+
+// ****  deep comparison implementation ****
+
+// function deepComparison(obj1, obj2) {
+//   if (obj1 == obj2) return true;
+
+//   if (
+//     typeof obj1 != "object" ||
+//     typeof obj2 != "object" ||
+//     obj1 == null ||
+//     obj2 == null
+//   )
+//     return false;
+
+//   let keys1 = Object.keys(obj1);
+//   let keys2 = Object.keys(obj2);
+
+//   if (keys1.length != keys2.length) return false;
+
+//   for (let key in keys1) {
+//     if (deepComparison(obj1[key], obj2[key]) == false) return false;
+//   }
+
+//   return true;
+// }
+
+// let obj1 = { name: "Saurabh", age: 20 };
+// let obj2 = { name: "Saurabh", age: 20 };
+
+// console.log(deepComparison(obj1, obj2));
+// console.log(obj1 == obj2);
+
+// function deepComparison(obj1, obj2) {
+//   if (obj1 === obj2) return true;
+//   if (
+//     typeof obj1 !== "object" ||
+//     typeof obj2 !== "object" ||
+//     obj1 === null ||
+//     obj2 === null
+//   ) {
+//     return false;
+//   }
+//   let keys1 = Object.keys(obj1);
+//   let keys2 = Object.keys(obj2);
+
+//   if (keys1.length !== keys2.length) {
+//     return false;
+//   }
+//   for (let key of keys1) {
+//     if (!deepComparison(obj1[key], obj2[key])) return false;
+//   }
+//   return true;
+// }
+// let x = { name: "Ram", address: { city: "Ayodhya" } };
+// let y = { name: "Ram", address: { city: "Ayodhya" } };
+
+// console.log(deepComparison(x, y));
+// console.log(x == y);
+
+// let dosti1 = { naam: "Rahul", umar: 25, city: "Delhi" };
+// let dosti2 = { naam: "Rahul", umar: 25, city: "delhi" };
+
+// console.log(deepComparison(dosti1, dosti2));
+// console.log(dosti1 == dosti2);
+
+// let obj1 = {
+//   name: "Shivraj",
+//   age: 20,
+//   address: {
+//     city: "Bangalore",
+//     pin: 560001,
+//   },
+// };
+
+// let obj2 = {
+//   name: "Shivraj",
+//   age: 20,
+//   address: {
+//     city: "Bangalore",
+//     pin: 560001,
+//   },
+// };
+
+// console.log(deepComparison(obj1, obj2));
+
+// ==========================================================
+
+function debounce(fn, wait) {
+  let timer;
+  return function (...arguments) {
+    if (timer) clearTimeout(timer);
+
+    timer = setTimeout(() => {
+      fn.apply(this, arguments);
+    }, wait);
+  };
+}
+
+const logger = (args) => {
+  console.log(`Log Data : `, args);
+};
+
+const debounceLogger = debounce(logger, 2000);
+
+debounceLogger(1);
+debounceLogger(2);
+debounceLogger(3);
+debounceLogger(4);
+debounceLogger(5);
+debounceLogger(6);
+debounceLogger(7);
+debounceLogger(8);
+debounceLogger(9);
