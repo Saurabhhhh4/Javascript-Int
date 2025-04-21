@@ -141,29 +141,74 @@
 
 // ==========================================================
 
-function debounce(fn, wait) {
-  let timer;
-  return function (...arguments) {
-    if (timer) clearTimeout(timer);
+// function debounce(fn, wait) {
+//   let timer;
+//   return function (...arguments) {
+//     if (timer) clearTimeout(timer);
 
-    timer = setTimeout(() => {
-      fn.apply(this, arguments);
-    }, wait);
-  };
+//     timer = setTimeout(() => {
+//       fn.apply(this, arguments);
+//     }, wait);
+//   };
+// }
+
+// const logger = (args) => {
+//   console.log(`Log Data : `, args);
+// };
+
+// const debounceLogger = debounce(logger, 2000);
+
+// debounceLogger(1);
+// debounceLogger(2);
+// debounceLogger(3);
+// debounceLogger(4);
+
+// ========================================================================
+
+// function debounce(fn, wait) {
+//   let timer;
+
+//   return function (...arguments) {
+//     if (timer) clearTimeout(timer);
+
+//     timer = setTimeout(() => {
+//       fn.apply(this, arguments);
+//     }, wait);
+//   };
+// }
+
+// const logger = (args) => {
+//   console.log("Log Data", args);
+// };
+
+// const debounceLogger = debounce(logger, 2000);
+
+// debounceLogger(1);
+// debounceLogger(2);
+
+// ===========================================================================================================
+
+// function flattenArray(arr) {
+//   return arr.reduce((acc, curr) => {
+//     return acc.concat(Array.isArray(curr) ? flattenArray(curr) : curr);
+//   }, []);
+// }
+
+let arr1 = [1, 2, [3, 4], [5, [6, 7]], 8];
+console.log(flattenArray(arr1));
+
+function flattenArray(arr) {
+  // recursive function
+  let result = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (Array.isArray(arr[i])) {
+      result = result.concat(flattenArray(arr[i]));
+    } else {
+      result.push(arr[i]);
+    }
+  }
+  return result;
 }
 
-const logger = (args) => {
-  console.log(`Log Data : `, args);
-};
-
-const debounceLogger = debounce(logger, 2000);
-
-debounceLogger(1);
-debounceLogger(2);
-debounceLogger(3);
-debounceLogger(4);
-debounceLogger(5);
-debounceLogger(6);
-debounceLogger(7);
-debounceLogger(8);
-debounceLogger(9);
+let arr = [1, 2, [3, 4], [5, [6, 7]], 8];
+console.log(flattenArray(arr));
