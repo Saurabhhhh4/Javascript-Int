@@ -167,7 +167,6 @@
 
 // function debounce(fn, wait) {
 //   let timer;
-
 //   return function (...arguments) {
 //     if (timer) clearTimeout(timer);
 
@@ -178,15 +177,45 @@
 // }
 
 // const logger = (args) => {
-//   console.log("Log Data", args);
+//   console.log("log", args);
 // };
 
 // const debounceLogger = debounce(logger, 2000);
 
-// debounceLogger(1);
-// debounceLogger(2);
+// debounceLogger(7);
+// debounceLogger(8);
 
 // ===========================================================================================================
+//throttle example
+
+// function throttle(fn, limit) {
+//   let inThrottle;
+
+//   return function (...args) {
+//     if (!inThrottle) {
+//       fn.apply(this, args);
+//       inThrottle = true;
+//       setTimeout(() => {
+//         inThrottle = false;
+//       }, limit);
+//     }
+//   };
+// }
+
+// const logger = (msg) => {
+//   console.log("runnnn", msg);
+// };
+
+// const throttleLogger = throttle(logger, 2000);
+
+// const interval = setInterval(() => {
+//   throttleLogger("helloooo");
+// }, 200);
+
+// setTimeout(() => {
+//   clearInterval(interval);
+//   console.log("stop");
+// }, 10000);
 
 // function flattenArray(arr) {
 //   return arr.reduce((acc, curr) => {
@@ -194,21 +223,41 @@
 //   }, []);
 // }
 
-let arr1 = [1, 2, [3, 4], [5, [6, 7]], 8];
-console.log(flattenArray(arr1));
+///Flatten the array
 
-function flattenArray(arr) {
-  // recursive function
-  let result = [];
-  for (let i = 0; i < arr.length; i++) {
-    if (Array.isArray(arr[i])) {
-      result = result.concat(flattenArray(arr[i]));
-    } else {
-      result.push(arr[i]);
-    }
-  }
-  return result;
-}
+// let arr1 = [1, 2, [3, 4], [5, [6, 7]], 8];
+// console.log(flattenArray(arr1));
 
-let arr = [1, 2, [3, 4], [5, [6, 7]], 8];
-console.log(flattenArray(arr));
+// function flattenArray(arr) {
+//   // recursive function
+//   let result = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     if (Array.isArray(arr[i])) {
+//       result = result.concat(flattenArray(arr[i]));
+//     } else {
+//       result.push(arr[i]);
+//     }
+//   }
+//   return result;
+// }
+
+// let arr = [1, 2, [3, 4], [5, [6, 7]], 8];
+// console.log(flattenArray(arr));
+
+///////prac
+// function flattenArray(arr) {
+//   let result = [];
+
+//   for (let i = 0; i < arr.length; i++) {
+//     if (Array.isArray(arr[i])) {
+//       result = result.concat(flattenArray(arr[i]));
+//     } else {
+//       result.push(arr[i]);
+//     }
+//   }
+//   return result;
+// }
+// let arr = [1, 2, [3, 4], [5, [6, 7]], 8];
+// console.log(flattenArray(arr));
+
+// ======================

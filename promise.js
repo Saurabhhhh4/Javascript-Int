@@ -300,3 +300,16 @@ const intervalId = setInterval(() => {
   clearInterval(intervalId); // stops the "stop" log
   clearTimeout(timeoutId); // stops the recursive timeout
 }, 2000);
+
+response.sort((a, b) => {
+  const dateA = new Date(a.date).getTime();
+  const dateB = new Date(b.date).getTime();
+
+  if (dateA === dateB) {
+    // agar date same ho toh location compare kar lein
+    return a.location.localeCompare(b.location);
+  } else {
+    // warna date ke hisaab se sort kar lein
+    return dateA - dateB;
+  }
+});
