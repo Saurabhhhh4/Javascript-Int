@@ -282,34 +282,55 @@ const promise3 = new Promise((resolve, reject) => {
 
 ///////////////////////////////////////////////////////
 
-process.on("unhandledRejection", (reason, promise) => {
-  console.error("Unhandled Rejection at:", promise, "reason:", reason);
-});
+// process.on("unhandledRejection", (reason, promise) => {
+//   console.error("Unhandled Rejection at:", promise, "reason:", reason);
+// });
 
-let timeoutId;
+// let timeoutId;
 
-function run() {
-  console.log("Executing...");
-  timeoutId = setTimeout(run, 1000);
+// function run() {
+//   console.log("Executing...");
+//   timeoutId = setTimeout(run, 1000);
+// }
+
+// timeoutId = setTimeout(run, 1000);
+
+// const intervalId = setInterval(() => {
+//   console.log("stop");
+//   clearInterval(intervalId); // stops the "stop" log
+//   clearTimeout(timeoutId); // stops the recursive timeout
+// }, 2000);
+
+// response.sort((a, b) => {
+//   const dateA = new Date(a.date).getTime();
+//   const dateB = new Date(b.date).getTime();
+
+//   if (dateA === dateB) {
+//     // agar date same ho toh location compare kar lein
+//     return a.location.localeCompare(b.location);
+//   } else {
+//     // warna date ke hisaab se sort kar lein
+//     return dateA - dateB;
+//   }
+// });
+
+function fetchProduct() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      let available = true;
+      if (available) {
+        resolve("Product fetched successfully");
+      } else {
+        reject("Product not available");
+      }
+    }, 2000);
+  });
 }
 
-timeoutId = setTimeout(run, 1000);
-
-const intervalId = setInterval(() => {
-  console.log("stop");
-  clearInterval(intervalId); // stops the "stop" log
-  clearTimeout(timeoutId); // stops the recursive timeout
-}, 2000);
-
-response.sort((a, b) => {
-  const dateA = new Date(a.date).getTime();
-  const dateB = new Date(b.date).getTime();
-
-  if (dateA === dateB) {
-    // agar date same ho toh location compare kar lein
-    return a.location.localeCompare(b.location);
-  } else {
-    // warna date ke hisaab se sort kar lein
-    return dateA - dateB;
-  }
-});
+fetchProduct()
+  .then((message) => {
+    console.log(message);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
