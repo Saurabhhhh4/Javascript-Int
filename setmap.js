@@ -342,6 +342,25 @@ const num = [1, 2, 2, 3, 4, 4, 5];
 
 // console.log(diff);
 
+// const items = [
+//   { name: "apple", category: "fruit" },
+//   { name: "banana", category: "fruit" },
+//   { name: "carrot", category: "vegetable" },
+//   { name: "broccoli", category: "vegetable" },
+// ];
+
+// const group = new Map();
+
+// for (let item of items) {
+//   const key = item.category;
+
+//   if (!group.has(key)) {
+//     group.set(key, []);
+//   }
+//   group.get(key).push(item.name);
+// }
+// console.log(group);
+
 const items = [
   { name: "apple", category: "fruit" },
   { name: "banana", category: "fruit" },
@@ -349,14 +368,22 @@ const items = [
   { name: "broccoli", category: "vegetable" },
 ];
 
-const group = new Map();
+// Step 1: Create a new Map
+const grouped = new Map();
 
 for (let item of items) {
   const key = item.category;
 
-  if (!group.has(key)) {
-    group.set(key, []);
+  if (!grouped.has(key)) {
+    grouped.set(key, []);
   }
-  group.get(key).push(item.name);
+
+  grouped.get(key).push(item.name);
 }
-console.log(group);
+
+console.log(grouped);
+// Output:
+// Map(2) {
+//   'fruit' => [ 'apple', 'banana' ],
+//   'vegetable' => [ 'carrot', 'broccoli' ]
+// }
