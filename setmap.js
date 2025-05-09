@@ -361,29 +361,45 @@ const num = [1, 2, 2, 3, 4, 4, 5];
 // }
 // console.log(group);
 
-const items = [
-  { name: "apple", category: "fruit" },
-  { name: "banana", category: "fruit" },
-  { name: "carrot", category: "vegetable" },
-  { name: "broccoli", category: "vegetable" },
-];
+// const items = [
+//   { name: "apple", category: "fruit" },
+//   { name: "banana", category: "fruit" },
+//   { name: "carrot", category: "vegetable" },
+//   { name: "broccoli", category: "vegetable" },
+// ];
 
 // Step 1: Create a new Map
-const grouped = new Map();
+// const grouped = new Map();
 
-for (let item of items) {
-  const key = item.category;
+// for (let item of items) {
+//   const key = item.category;
 
-  if (!grouped.has(key)) {
-    grouped.set(key, []);
-  }
+//   if (!grouped.has(key)) {
+//     grouped.set(key, []);
+//   }
 
-  grouped.get(key).push(item.name);
-}
+//   grouped.get(key).push(item.name);
+// }
 
-console.log(grouped);
+// console.log(grouped);
 // Output:
 // Map(2) {
 //   'fruit' => [ 'apple', 'banana' ],
 //   'vegetable' => [ 'carrot', 'broccoli' ]
 // }
+
+const numbers = [1, 2, 3, 4, 5, 6];
+const grouped = {
+  even: [],
+  odd: [],
+};
+
+numbers.forEach((num) => {
+  if (num % 2 === 0) {
+    grouped.even.push(num);
+  } else {
+    grouped.odd.push(num);
+  }
+});
+
+console.log(grouped);
