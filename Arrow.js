@@ -1,32 +1,32 @@
-function person() {
-  this.name = "saurabh";
-  setTimeout(function () {
-    // console.log(`hi  ${this.name}`);
-  }, 1000);
-}
-person();
+// function person() {
+//   this.name = "saurabh";
+//   setTimeout(function () {
+//     // console.log(`hi  ${this.name}`);
+//   }, 1000);
+// }
+// person();
 
-function person1() {
-  this.name = "saurabh";
-  setTimeout(() => {
-    // console.log("hi " + this.name);
-  }, 1000);
-}
-person1();
+// function person1() {
+//   this.name = "saurabh";
+//   setTimeout(() => {
+//     // console.log("hi " + this.name);
+//   }, 1000);
+// }
+// person1();
 
-const nums = [1, 2, 3, 4];
-const double = nums.map((n) => n * 2);
-// console.log(double);
+// const nums = [1, 2, 3, 4];
+// const double = nums.map((n) => n * 2);
+// // console.log(double);
 
-const events = nums.filter((nums) => nums % 2 === 0);
-// console.log(events);
+// const events = nums.filter((nums) => nums % 2 === 0);
+// // console.log(events);
 
-const sum = nums.reduce((total, sum) => total + nums, 0);
-// console.log(sum);
+// const sum = nums.reduce((total, sum) => total + nums, 0);
+// // console.log(sum);
 
-setTimeout(() => {
-  // console.log("Done!!");
-}, 100);
+// setTimeout(() => {
+//   // console.log("Done!!");
+// }, 100);
 
 // document.getElementById("outerDiv").addEventListener("click", function () {
 //   console.log("Outer div clicked");
@@ -55,22 +55,89 @@ setTimeout(() => {
 // };
 
 // xhr.send();
-const animal = {
-  eats: true,
-  walk() {
-    console.log("Animal walks");
-  },
-};
+// const animal = {
+//   eats: true,
+//   walk() {
+//     console.log("Animal walks");
+//   },
+// };
 
-const dog = {
-  bark() {
-    console.log("Dog barks");
-  },
-};
+// const dog = {
+//   bark() {
+//     console.log("Dog barks");
+//   },
+// };
 
 // Inherit from animal
-dog.__proto__ = animal;
+// dog.__proto__ = animal;
 
-console.log(dog.eats); // true (inherited)
-dog.walk(); // "Animal walks" (inherited)
-dog.bark(); // "Dog barks" (own method)
+// console.log(dog.eats); // true (inherited)
+// dog.walk(); // "Animal walks" (inherited)
+// dog.bark(); // "Dog barks" (own method)
+
+// function Person(name) {
+//   this.name = name;
+// }
+
+// Person.prototype.sayHi = function () {
+//   console.log(`Hi, I am ${this.name}`);
+// };
+
+// const p1 = new Person("sauyrabh");
+// p1.sayHi();
+
+// function show() {
+//   console.log(this);
+// }
+// show(); // In browser: window
+
+// const user = {
+//   name: "saurabh",
+//   greet: () => {
+//     console.log(this.name);
+//   },
+// };
+// user.greet();
+
+// function Car(name) {
+//   this.name = name;
+
+//   const myCar = new Car("Innova");
+//   console.log(myCar.name);
+// }
+
+function greet(name, callback) {
+  console.log("Hello " + name);
+  callback();
+}
+
+function sayBye() {
+  console.log("Goodbye!");
+}
+
+greet("Raj", sayBye);
+
+function fetchData(callback) {
+  setTimeout(() => {
+    console.log("Data fetched from server");
+    callback();
+  }, 2000);
+}
+
+function processData() {
+  console.log("Processing the data...");
+}
+
+fetchData(processData);
+
+// Output after 2 seconds:
+// Data fetched from server
+// Processing the data...
+
+step1(function () {
+  step2(function () {
+    step3(function () {
+      // and so on...
+    });
+  });
+});
