@@ -141,3 +141,26 @@ step1(function () {
     });
   });
 });
+
+function greet(name, callback) {
+  console.log("Hello " + name);
+  callback();
+}
+
+function sayBye() {
+  console.log("Goodbye!");
+}
+
+greet("Raj", sayBye);
+
+// Output:
+// Hello Raj
+// Goodbye!
+
+const a = [];
+if (a) {
+  console.log("Array is truthy");
+}
+if (a == false) {
+  console.log("Array equals false?");
+}
