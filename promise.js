@@ -314,23 +314,88 @@ const promise3 = new Promise((resolve, reject) => {
 //   }
 // });
 
-function fetchProduct() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      let available = true;
-      if (available) {
-        resolve("Product fetched successfully");
-      } else {
-        reject("Product not available");
-      }
-    }, 2000);
-  });
-}
+// function fetchProduct() {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       let available = true;
+//       if (available) {
+//         resolve("Product fetched successfully");
+//       } else {
+//         reject("Product not available");
+//       }
+//     }, 2000);
+//   });
+// }
 
-fetchProduct()
-  .then((message) => {
-    console.log(message);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+// fetchProduct()
+//   .then((message) => {
+//     console.log(message);
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
+
+const delay = (ms, value) =>
+  new Promise((resolve) => setTimeout(() => resolve(value), ms));
+
+const toughPromiseChain = async () => {
+  try {
+    // Start with a simple delay
+    const first = await delay(100, "First");
+    console.log(first);
+
+    // Nested promise chain with error handling
+    const second = await Promise.race([
+      delay(200, "Second"),
+      delay(150, "Too Fast").then((val) => {
+        throw new Error(`${val} Rejected`);
+      }),
+    ]).catch((err) => {
+      console.log("Caught:", err.message);
+      return delay(50, "Recovered");
+    });
+
+    console.log(second);
+
+    // Complex promise all with transformations
+    const [a, b, c] = await Promise.all([
+      delay(100, 10),
+      delay(200, 20).then((x) => x * 2),
+      delay(50, 30)
+        .then((x) => {
+          if (x > 25) throw new Error("Value too big");
+          return x;
+        })
+        .catch(() => 5),
+    ]);
+
+    console.log(`Results: ${a}, ${b}, ${c}`);
+
+    // Recursive promise
+    const recursive = async (count) => {
+      if (count <= 0) return "Done";
+      await delay(50);
+      return recursive(count - 1);
+    };
+
+    const final = await recursive(3);
+    console.log(final);
+
+    // Unhandled promise that we won't await
+    delay(1000).then(() => {
+      console.log("This might appear after everything else");
+    });
+
+    return "All completed";
+  } catch (error) {
+    console.error("Major error:", error);
+    throw error;
+  }
+};
+
+// Execute the tough promise chain
+toughPromiseChain()
+  .then(console.log)
+  .catch(() => console.log("External catch"));
+
+console.log("This will appear first - async demonstration");
