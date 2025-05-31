@@ -400,51 +400,51 @@
 
 // console.log("This will appear first - async demonstration");
 
-Promise.resolve().then(() => {
-  console.log("microtask 1");
+// Promise.resolve().then(() => {
+//   console.log("microtask 1");
 
-  Promise.resolve().then(() => {
-    console.log("microtask 2");
-  });
-});
+//   Promise.resolve().then(() => {
+//     console.log("microtask 2");
+//   });
+// });
 
-console.log("End");
+// console.log("End");
 
-console.log("A");
+// console.log("A");
 
-setTimeout(() => console.log("B"), 0);
+// setTimeout(() => console.log("B"), 0);
 
-Promise.resolve().then(() => console.log("C"));
+// Promise.resolve().then(() => console.log("C"));
 
-console.log("D");
+// console.log("D");
 
-console.log("A");
+// console.log("A");
 
-setTimeout(() => {
-  console.log("B");
+// setTimeout(() => {
+//   console.log("B");
 
-  Promise.resolve().then(() => {
-    console.log("C");
-  });
-}, 0);
+//   Promise.resolve().then(() => {
+//     console.log("C");
+//   });
+// }, 0);
 
-Promise.resolve().then(() => {
-  console.log("D");
-});
+// Promise.resolve().then(() => {
+//   console.log("D");
+// });
 
-console.log("E");
+// console.log("E");
 
-Promise.resolve().then(function () {
-  console.log("hell");
-});
+// Promise.resolve().then(function () {
+//   console.log("hell");
+// });
 
-button.addEventListener("click", () => {
-  Promise.resolve().then(() => {
-    // Runs before any rendering or timeout
-    alert("Promise handler runs immediately after click code.");
-  });
+// button.addEventListener("click", () => {
+//   Promise.resolve().then(() => {
+//     // Runs before any rendering or timeout
+//     alert("Promise handler runs immediately after click code.");
+//   });
 
-  setTimeout(() => {
-    alert("setTimeout is slower");
-  }, 0);
-});
+//   setTimeout(() => {
+//     alert("setTimeout is slower");
+//   }, 0);
+// });
