@@ -72,15 +72,15 @@
 
 // ===============================================
 
-const promise1 = new Promise((resolve, reject) => {
-  setTimeout(resolve, 100, "succes1");
-});
-const promise2 = new Promise((resolve, reject) => {
-  setTimeout(resolve, 200, "succes2");
-});
-const promise3 = new Promise((resolve, reject) => {
-  setTimeout(reject, 300, "error");
-});
+// const promise1 = new Promise((resolve, reject) => {
+//   setTimeout(resolve, 100, "succes1");
+// });
+// const promise2 = new Promise((resolve, reject) => {
+//   setTimeout(resolve, 200, "succes2");
+// });
+// const promise3 = new Promise((resolve, reject) => {
+//   setTimeout(reject, 300, "error");
+// });
 
 // .............................................
 ///Promise.all waits for all to succeed.
@@ -335,67 +335,116 @@ const promise3 = new Promise((resolve, reject) => {
 //     console.log(error);
 //   });
 
-const delay = (ms, value) =>
-  new Promise((resolve) => setTimeout(() => resolve(value), ms));
+// const delay = (ms, value) =>
+//   new Promise((resolve) => setTimeout(() => resolve(value), ms));
 
-const toughPromiseChain = async () => {
-  try {
-    // Start with a simple delay
-    const first = await delay(100, "First");
-    console.log(first);
+// const toughPromiseChain = async () => {
+//   try {
+//     // Start with a simple delay
+//     const first = await delay(100, "First");
+//     console.log(first);
 
-    // Nested promise chain with error handling
-    const second = await Promise.race([
-      delay(200, "Second"),
-      delay(150, "Too Fast").then((val) => {
-        throw new Error(`${val} Rejected`);
-      }),
-    ]).catch((err) => {
-      console.log("Caught:", err.message);
-      return delay(50, "Recovered");
-    });
+//     // Nested promise chain with error handling
+//     const second = await Promise.race([
+//       delay(200, "Second"),
+//       delay(150, "Too Fast").then((val) => {
+//         throw new Error(`${val} Rejected`);
+//       }),
+//     ]).catch((err) => {
+//       console.log("Caught:", err.message);
+//       return delay(50, "Recovered");
+//     });
 
-    console.log(second);
+//     console.log(second);
 
-    // Complex promise all with transformations
-    const [a, b, c] = await Promise.all([
-      delay(100, 10),
-      delay(200, 20).then((x) => x * 2),
-      delay(50, 30)
-        .then((x) => {
-          if (x > 25) throw new Error("Value too big");
-          return x;
-        })
-        .catch(() => 5),
-    ]);
+//     // Complex promise all with transformations
+//     const [a, b, c] = await Promise.all([
+//       delay(100, 10),
+//       delay(200, 20).then((x) => x * 2),
+//       delay(50, 30)
+//         .then((x) => {
+//           if (x > 25) throw new Error("Value too big");
+//           return x;
+//         })
+//         .catch(() => 5),
+//     ]);
 
-    console.log(`Results: ${a}, ${b}, ${c}`);
+//     console.log(`Results: ${a}, ${b}, ${c}`);
 
-    // Recursive promise
-    const recursive = async (count) => {
-      if (count <= 0) return "Done";
-      await delay(50);
-      return recursive(count - 1);
-    };
+//     // Recursive promise
+//     const recursive = async (count) => {
+//       if (count <= 0) return "Done";
+//       await delay(50);
+//       return recursive(count - 1);
+//     };
 
-    const final = await recursive(3);
-    console.log(final);
+//     const final = await recursive(3);
+//     console.log(final);
 
-    // Unhandled promise that we won't await
-    delay(1000).then(() => {
-      console.log("This might appear after everything else");
-    });
+//     // Unhandled promise that we won't await
+//     delay(1000).then(() => {
+//       console.log("This might appear after everything else");
+//     });
 
-    return "All completed";
-  } catch (error) {
-    console.error("Major error:", error);
-    throw error;
-  }
-};
+//     return "All completed";
+//   } catch (error) {
+//     console.error("Major error:", error);
+//     throw error;
+//   }
+// };
 
-// Execute the tough promise chain
-toughPromiseChain()
-  .then(console.log)
-  .catch(() => console.log("External catch"));
+// // Execute the tough promise chain
+// toughPromiseChain()
+//   .then(console.log)
+//   .catch(() => console.log("External catch"));
 
-console.log("This will appear first - async demonstration");
+// console.log("This will appear first - async demonstration");
+
+Promise.resolve().then(() => {
+  console.log("microtask 1");
+
+  Promise.resolve().then(() => {
+    console.log("microtask 2");
+  });
+});
+
+console.log("End");
+
+console.log("A");
+
+setTimeout(() => console.log("B"), 0);
+
+Promise.resolve().then(() => console.log("C"));
+
+console.log("D");
+
+console.log("A");
+
+setTimeout(() => {
+  console.log("B");
+
+  Promise.resolve().then(() => {
+    console.log("C");
+  });
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log("D");
+});
+
+console.log("E");
+
+Promise.resolve().then(function () {
+  console.log("hell");
+});
+
+button.addEventListener("click", () => {
+  Promise.resolve().then(() => {
+    // Runs before any rendering or timeout
+    alert("Promise handler runs immediately after click code.");
+  });
+
+  setTimeout(() => {
+    alert("setTimeout is slower");
+  }, 0);
+});
