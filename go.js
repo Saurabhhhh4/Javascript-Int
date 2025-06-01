@@ -218,3 +218,12 @@
 // ****
 // create a promise to wait for a second
 // deep clone of object using function
+
+// function flattenArray(arr) {
+//   return arr.reduce((acc, curr) => {
+//     return acc.concat(Array.isArray(curr) ? flattenArray(curr) : curr);
+//   }, []);
+// }
+
+// let arr1 = [1, 2, [3, 4], [5, [6, 7]], 8];
+// console.log(flattenArray(arr1));
