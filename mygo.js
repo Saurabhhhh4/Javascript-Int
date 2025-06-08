@@ -261,3 +261,13 @@
 // console.log(flattenArray(arr));
 
 // ======================
+
+function Person(name) {
+  this.name = name;
+}
+Person.prototype.greet = function () {
+  // Method on the prototype
+  return `Hello, my name is ${this.name}`;
+};
+const alice = new Person("Alice");
+console.log(alice.greet()); // Output: "Hello, my name is Alice" (alice inherits greet from Person.prototype)
