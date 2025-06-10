@@ -275,3 +275,10 @@ fs.readFile("file.txt", function (err, data) {
   if (err) throw err;
   console.log(data);
 });
+
+function Car() {
+  this.speed = 100;
+  setTimeout(() => {
+    console.log(this.speed); // 100
+  }, 1000);
+}
