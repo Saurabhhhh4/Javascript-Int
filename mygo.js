@@ -271,3 +271,7 @@ Person.prototype.greet = function () {
 };
 const alice = new Person("Alice");
 console.log(alice.greet()); // Output: "Hello, my name is Alice" (alice inherits greet from Person.prototype)
+fs.readFile("file.txt", function (err, data) {
+  if (err) throw err;
+  console.log(data);
+});
