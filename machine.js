@@ -56,13 +56,29 @@
 // const maxNumm = maxNum(num);
 // console.log(maxNumm);
 
-function factorial(n) {
-  if (n === 0 || n === 1) {
-    return 1;
-  } else {
-    return n * factorial(n - 1);
+// function factorial(n) {
+//   if (n === 0 || n === 1) {
+//     return 1;
+//   } else {
+//     return n * factorial(n - 1);
+//   }
+// }
+// const number = 5;
+// const result = factorial(number);
+// console.log("Factorial of", number, "is", result);
+
+function findMax(arr) {
+  if (arr.length === 0) {
+    return null; // Handle empty array
   }
+  let max = arr[0];
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > max) {
+      max = arr[i];
+    }
+  }
+  return max;
 }
-const number = 5;
-const result = factorial(number);
-console.log("Factorial of", number, "is", result);
+const numbers = [10, 5, 25, 8, 15];
+const maxNumber = findMax(numbers);
+console.log("The maximum number is:", maxNumber);
