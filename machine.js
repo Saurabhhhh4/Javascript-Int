@@ -67,18 +67,37 @@
 // const result = factorial(number);
 // console.log("Factorial of", number, "is", result);
 
-function findMax(arr) {
-  if (arr.length === 0) {
-    return null; // Handle empty array
+// function findMax(arr) {
+//   if (arr.length === 0) {
+//     return null; // Handle empty array
+//   }
+//   let max = arr[0];
+//   for (let i = 1; i < arr.length; i++) {
+//     if (arr[i] > max) {
+//       max = arr[i];
+//     }
+//   }
+//   return max;
+// }
+// const numbers = [10, 5, 25, 8, 15];
+// const maxNumber = findMax(numbers);
+// console.log("The maximum number is:", maxNumber);
+
+function isPrime(number) {
+  if (number <= 1) {
+    return false; // Numbers less than or equal to 1 are not prime
   }
-  let max = arr[0];
-  for (let i = 1; i < arr.length; i++) {
-    if (arr[i] > max) {
-      max = arr[i];
+  for (let i = 2; i * i <= number; i++) {
+    if (number % i === 0) {
+      return false; // If divisible by any number between 2 and the square root of a number, it's not prime
     }
   }
-  return max;
+  return true; // If the loop completes without finding a divisor, the number is prime
 }
-const numbers = [10, 5, 25, 8, 15];
-const maxNumber = findMax(numbers);
-console.log("The maximum number is:", maxNumber);
+const num = 17;
+const isPrimeResult = isPrime(num);
+if (isPrimeResult) {
+  console.log(num, "is a prime number.");
+} else {
+  console.log(num, "is not a prime number.");
+}
