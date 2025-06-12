@@ -83,21 +83,70 @@
 // const maxNumber = findMax(numbers);
 // console.log("The maximum number is:", maxNumber);
 
-function isPrime(number) {
-  if (number <= 1) {
-    return false; // Numbers less than or equal to 1 are not prime
+// function isPrime(number) {
+//   if (number <= 1) {
+//     return false; // Numbers less than or equal to 1 are not prime
+//   }
+//   for (let i = 2; i * i <= number; i++) {
+//     if (number % i === 0) {
+//       return false; // If divisible by any number between 2 and the square root of a number, it's not prime
+//     }
+//   }
+//   return true; // If the loop completes without finding a divisor, the number is prime
+// }
+// const num = 17;
+// const isPrimeResult = isPrime(num);
+// if (isPrimeResult) {
+//   console.log(num, "is a prime number.");
+// } else {
+//   console.log(num, "is not a prime number.");
+// }
+
+const orders = [
+  {
+    orderId: "001",
+    customer: { name: "Alice", premiumMember: true },
+    items: [
+      { name: "Laptop", category: "Electronics", price: 1000, quantity: 1 },
+      { name: "Mouse", category: "Electronics", price: 50, quantity: 2 },
+    ],
+  },
+  {
+    orderId: "002",
+    customer: { name: "Bob", premiumMember: false },
+    items: [
+      { name: "Shirt", category: "Clothing", price: 40, quantity: 3 },
+      { name: "Laptop", category: "Electronics", price: 1000, quantity: 1 },
+    ],
+  },
+  {
+    orderId: "003",
+    customer: { name: "Carol", premiumMember: true },
+    items: [
+      { name: "Headphones", category: "Electronics", price: 200, quantity: 1 },
+      { name: "Jacket", category: "Clothing", price: 120, quantity: 1 },
+    ],
+  },
+];
+
+// Step 1: Only premium member orders
+const premiumOrders = orders.filter((order) => order.customer.premiumMember);
+
+// Step 2: Extract and flatten their items
+const premiumItems = premiumOrders.map((order) => order.items).flat();
+
+// Step 3: Filter items with price > 500
+const expensiveItems = premiumItems.filter((item) => item.price > 500);
+
+// Step 4: Remove duplicates by item name using Set
+const uniqueExpensiveItemsMap = new Map();
+expensiveItems.forEach((item) => {
+  if (!uniqueExpensiveItemsMap.has(item.name)) {
+    uniqueExpensiveItemsMap.set(item.name, item);
   }
-  for (let i = 2; i * i <= number; i++) {
-    if (number % i === 0) {
-      return false; // If divisible by any number between 2 and the square root of a number, it's not prime
-    }
-  }
-  return true; // If the loop completes without finding a divisor, the number is prime
-}
-const num = 17;
-const isPrimeResult = isPrime(num);
-if (isPrimeResult) {
-  console.log(num, "is a prime number.");
-} else {
-  console.log(num, "is not a prime number.");
-}
+});
+
+// Step 5: Convert Map values to array
+const uniqueExpensiveItems = Array.from(uniqueExpensiveItemsMap.values());
+
+console.log(uniqueExpensiveItems);
