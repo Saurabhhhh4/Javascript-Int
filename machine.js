@@ -102,51 +102,90 @@
 //   console.log(num, "is not a prime number.");
 // }
 
-const orders = [
-  {
-    orderId: "001",
-    customer: { name: "Alice", premiumMember: true },
-    items: [
-      { name: "Laptop", category: "Electronics", price: 1000, quantity: 1 },
-      { name: "Mouse", category: "Electronics", price: 50, quantity: 2 },
-    ],
-  },
-  {
-    orderId: "002",
-    customer: { name: "Bob", premiumMember: false },
-    items: [
-      { name: "Shirt", category: "Clothing", price: 40, quantity: 3 },
-      { name: "Laptop", category: "Electronics", price: 1000, quantity: 1 },
-    ],
-  },
-  {
-    orderId: "003",
-    customer: { name: "Carol", premiumMember: true },
-    items: [
-      { name: "Headphones", category: "Electronics", price: 200, quantity: 1 },
-      { name: "Jacket", category: "Clothing", price: 120, quantity: 1 },
-    ],
-  },
-];
+// const orders = [
+//   {
+//     orderId: "001",
+//     customer: { name: "Alice", premiumMember: true },
+//     items: [
+//       { name: "Laptop", category: "Electronics", price: 1000, quantity: 1 },
+//       { name: "Mouse", category: "Electronics", price: 50, quantity: 2 },
+//     ],
+//   },
+//   {
+//     orderId: "002",
+//     customer: { name: "Bob", premiumMember: false },
+//     items: [
+//       { name: "Shirt", category: "Clothing", price: 40, quantity: 3 },
+//       { name: "Laptop", category: "Electronics", price: 1000, quantity: 1 },
+//     ],
+//   },
+//   {
+//     orderId: "003",
+//     customer: { name: "Carol", premiumMember: true },
+//     items: [
+//       { name: "Headphones", category: "Electronics", price: 200, quantity: 1 },
+//       { name: "Jacket", category: "Clothing", price: 120, quantity: 1 },
+//     ],
+//   },
+// ];
 
-// Step 1: Only premium member orders
-const premiumOrders = orders.filter((order) => order.customer.premiumMember);
+// // Step 1: Only premium member orders
+// const premiumOrders = orders.filter((order) => order.customer.premiumMember);
 
-// Step 2: Extract and flatten their items
-const premiumItems = premiumOrders.map((order) => order.items).flat();
+// // Step 2: Extract and flatten their items
+// const premiumItems = premiumOrders.map((order) => order.items).flat();
 
-// Step 3: Filter items with price > 500
-const expensiveItems = premiumItems.filter((item) => item.price > 500);
+// // Step 3: Filter items with price > 500
+// const expensiveItems = premiumItems.filter((item) => item.price > 500);
 
-// Step 4: Remove duplicates by item name using Set
-const uniqueExpensiveItemsMap = new Map();
-expensiveItems.forEach((item) => {
-  if (!uniqueExpensiveItemsMap.has(item.name)) {
-    uniqueExpensiveItemsMap.set(item.name, item);
+// // Step 4: Remove duplicates by item name using Set
+// const uniqueExpensiveItemsMap = new Map();
+// expensiveItems.forEach((item) => {
+//   if (!uniqueExpensiveItemsMap.has(item.name)) {
+//     uniqueExpensiveItemsMap.set(item.name, item);
+//   }
+// });
+
+// // Step 5: Convert Map values to array
+// const uniqueExpensiveItems = Array.from(uniqueExpensiveItemsMap.values());
+
+// console.log(uniqueExpensiveItems);
+
+const graph = {
+  A: ["B"],
+  B: [],
+  C: ["D"],
+  D: [],
+  E: [],
+};
+
+function bfsFullGraph(graph) {
+  const visited = new Set();
+
+  for (const node in graph) {
+    if (!visited.has(node)) {
+      bfs(graph, node, visited);
+    }
   }
-});
+}
 
-// Step 5: Convert Map values to array
-const uniqueExpensiveItems = Array.from(uniqueExpensiveItemsMap.values());
+function bfs(graph, startNode, visited) {
+  const queue = [startNode];
 
-console.log(uniqueExpensiveItems);
+  while (queue.length > 0) {
+    const current = queue.shift();
+
+    if (!visited.has(current)) {
+      console.log(current); // Visit
+      visited.add(current);
+
+      for (const neighbor of graph[current]) {
+        if (!visited.has(neighbor)) {
+          queue.push(neighbor);
+        }
+      }
+    }
+  }
+}
+
+bfsFullGraph(graph);
