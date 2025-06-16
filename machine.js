@@ -151,6 +151,8 @@
 
 // console.log(uniqueExpensiveItems);
 
+//Traverse through all the node of every parent and child
+
 const graph = {
   A: ["B"],
   B: [],
@@ -189,3 +191,35 @@ function bfs(graph, startNode, visited) {
 }
 
 bfsFullGraph(graph);
+/////
+
+const input = "123 11 23 45";
+
+// Step 1: Split by space
+const numbers = input.split(" ");
+
+// Step 2: Map to digit sums
+const digitSums = numbers.map((num) => {
+  return num
+    .split("") // Split digits
+    .map(Number) // Convert to numbers
+    .reduce((a, b) => a + b, 0); // Sum
+});
+
+// Step 3: Join as space-separated string
+const output = digitSums.join(" ");
+
+console.log(output); // Output: "6 2 5 9"
+
+// input ="123 11 23 45"
+// output =" 2 5 6 9"write code in js
+
+const input1 = "123 11 23 45";
+
+const output1 = input
+  .split(" ")
+  .map((num) => num.split("").reduce((sum, digit) => sum + Number(digit), 0))
+  .sort((a, b) => a - b)
+  .join(" ");
+
+console.log(output1); // Output: "2 5 6 9"
