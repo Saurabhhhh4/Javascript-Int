@@ -448,3 +448,9 @@
 //     alert("setTimeout is slower");
 //   }, 0);
 // });
+
+console.log(1); // Synchronous
+setTimeout(() => console.log(2), 0); // Macrotask
+Promise.resolve().then(() => console.log(3)); // Microtask
+console.log(4); // Synchronous
+// Expected Output: 1, 4, 3, 2 (demonstrates synchronous code first, then microtasks, then macrotasks)
