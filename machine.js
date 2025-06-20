@@ -153,73 +153,84 @@
 
 //Traverse through all the node of every parent and child
 
-const graph = {
-  A: ["B"],
-  B: [],
-  C: ["D"],
-  D: [],
-  E: [],
-};
+// const graph = {
+//   A: ["B"],
+//   B: [],
+//   C: ["D"],
+//   D: [],
+//   E: [],
+// };
 
-function bfsFullGraph(graph) {
-  const visited = new Set();
+// function bfsFullGraph(graph) {
+//   const visited = new Set();
 
-  for (const node in graph) {
-    if (!visited.has(node)) {
-      bfs(graph, node, visited);
-    }
-  }
-}
+//   for (const node in graph) {
+//     if (!visited.has(node)) {
+//       bfs(graph, node, visited);
+//     }
+//   }
+// }
 
-function bfs(graph, startNode, visited) {
-  const queue = [startNode];
+// function bfs(graph, startNode, visited) {
+//   const queue = [startNode];
 
-  while (queue.length > 0) {
-    const current = queue.shift();
+//   while (queue.length > 0) {
+//     const current = queue.shift();
 
-    if (!visited.has(current)) {
-      console.log(current); // Visit
-      visited.add(current);
+//     if (!visited.has(current)) {
+//       console.log(current); // Visit
+//       visited.add(current);
 
-      for (const neighbor of graph[current]) {
-        if (!visited.has(neighbor)) {
-          queue.push(neighbor);
-        }
-      }
-    }
-  }
-}
+//       for (const neighbor of graph[current]) {
+//         if (!visited.has(neighbor)) {
+//           queue.push(neighbor);
+//         }
+//       }
+//     }
+//   }
+// }
 
-bfsFullGraph(graph);
+// bfsFullGraph(graph);
 /////
 
-const input = "123 11 23 45";
+// const input = "123 11 23 45";
 
-// Step 1: Split by space
-const numbers = input.split(" ");
+// // Step 1: Split by space
+// const numbers = input.split(" ");
 
-// Step 2: Map to digit sums
-const digitSums = numbers.map((num) => {
-  return num
-    .split("") // Split digits
-    .map(Number) // Convert to numbers
-    .reduce((a, b) => a + b, 0); // Sum
-});
+// // Step 2: Map to digit sums
+// const digitSums = numbers.map((num) => {
+//   return num
+//     .split("") // Split digits
+//     .map(Number) // Convert to numbers
+//     .reduce((a, b) => a + b, 0); // Sum
+// });
 
-// Step 3: Join as space-separated string
-const output = digitSums.join(" ");
+// // Step 3: Join as space-separated string
+// const output = digitSums.join(" ");
 
-console.log(output); // Output: "6 2 5 9"
+// console.log(output); // Output: "6 2 5 9"
 
 // input ="123 11 23 45"
 // output =" 2 5 6 9"write code in js
 
-const input1 = "123 11 23 45";
+// const input1 = "123 11 23 45";
 
-const output1 = input
-  .split(" ")
-  .map((num) => num.split("").reduce((sum, digit) => sum + Number(digit), 0))
-  .sort((a, b) => a - b)
-  .join(" ");
+// const output1 = input
+//   .split(" ")
+//   .map((num) => num.split("").reduce((sum, digit) => sum + Number(digit), 0))
+//   .sort((a, b) => a - b)
+//   .join(" ");
 
-console.log(output1); // Output: "2 5 6 9"
+// console.log(output1); // Output: "2 5 6 9"
+
+async function fetchSequentially() {
+  try {
+    const userData = await fetchUser(); // Waits for fetchUser to resolve
+    const postsData = await fetchPosts(userData.id); // Waits for fetchPosts
+    const commentsData = await fetchComments(postsData.id); // Waits for fetchComments
+    return { user: userData, posts: postsData, comments: commentsData };
+  } catch (error) {
+    console.error("Error fetching data:", error); // Centralized error handling
+  }
+}
