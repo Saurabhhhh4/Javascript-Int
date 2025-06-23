@@ -224,13 +224,37 @@
 
 // console.log(output1); // Output: "2 5 6 9"
 
-async function fetchSequentially() {
-  try {
-    const userData = await fetchUser(); // Waits for fetchUser to resolve
-    const postsData = await fetchPosts(userData.id); // Waits for fetchPosts
-    const commentsData = await fetchComments(postsData.id); // Waits for fetchComments
-    return { user: userData, posts: postsData, comments: commentsData };
-  } catch (error) {
-    console.error("Error fetching data:", error); // Centralized error handling
+// async function fetchSequentially() {
+//   try {
+//     const userData = await fetchUser(); // Waits for fetchUser to resolve
+//     const postsData = await fetchPosts(userData.id); // Waits for fetchPosts
+//     const commentsData = await fetchComments(postsData.id); // Waits for fetchComments
+//     return { user: userData, posts: postsData, comments: commentsData };
+//   } catch (error) {
+//     console.error("Error fetching data:", error); // Centralized error handling
+//   }
+// }
+
+function secondHighestRepeating(arr) {
+  const freqMap = {};
+
+  // Step 1: Count frequency
+  for (let num of arr) {
+    freqMap[num] = (freqMap[num] || 0) + 1;
   }
+
+  // Step 2: Convert to array and sort by frequency
+  const sortedByFreq = Object.entries(freqMap).sort((a, b) => b[1] - a[1]); // Descending by count
+
+  // Step 3: Handle edge cases
+  if (sortedByFreq.length < 2) {
+    return null; // Not enough unique elements
+  }
+
+  // Step 4: Return second highest repeating element
+  return sortedByFreq[1][0]; // key of second entry
 }
+
+// 🔍 Example
+const arr = [1, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5];
+console.log(secondHighestRepeating(arr)); // Output: 2 or 5 (depends on sort stability)
