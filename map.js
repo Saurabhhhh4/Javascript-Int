@@ -78,3 +78,15 @@ console.log(union(setA, setC)); // Set {1, 2, 3, 4, 5, 6}
 console.log(intersection(setA, setC)); // Set {3, 4}
 console.log(symmetricDifference(setA, setC)); // Set {1, 2, 5, 6}
 console.log(difference(setA, setC)); // Set {1, 2}
+
+let fruits = ["apple", "banana"];
+fruits.push("orange");
+console.log(fruits); // ['apple', 'banana', 'orange']
+
+let fruits1 = ["apple", "banana", "orange"];
+fruits.pop();
+console.log(fruits); // ['apple', 'banana']
+
+let fruits2 = ["banana"];
+fruits.unshift("apple");
+console.log(fruits); // ['apple', 'banana']
