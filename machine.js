@@ -256,5 +256,5 @@ function secondHighestRepeating(arr) {
 }
 
 // 🔍 Example
-const arr = [1, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5];
+const arr = [1, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 5];
 console.log(secondHighestRepeating(arr)); // Output: 2 or 5 (depends on sort stability)
