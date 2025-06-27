@@ -13,20 +13,38 @@
 
 // ......AbortController
 
-function findLargestElement(arr) {
-  let max = -Infinity;
-  function helper(nestedArr) {
+// function findLargestElement(arr) {
+//   let max = -Infinity;
+//   function helper(nestedArr) {
+//     for (let item of nestedArr) {
+//       if (typeof item === "number") {
+//         max = Math.max(max, item);
+//       } else if (Array.isArray(item)) {
+//         helper(item);
+//       }
+//     }
+//   }
+//   helper(arr);
+//   return max;
+// }
+// const nestedArray = [1, [2, 3, [4, 5]], 6, [7, 8]];
+// const largestElement = findLargestElement(nestedArray);
+// console.log("Largest element:", largestElement);
+
+function flattenArray(arr) {
+  const flattened = [];
+  function flattenHelper(nestedArr) {
     for (let item of nestedArr) {
-      if (typeof item === "number") {
-        max = Math.max(max, item);
-      } else if (Array.isArray(item)) {
-        helper(item);
+      if (Array.isArray(item)) {
+        flattenHelper(item); // Recursively flatten the nested array
+      } else {
+        flattened.push(item); // Push non-array items into the flattened array
       }
     }
   }
-  helper(arr);
-  return max;
+  flattenHelper(arr);
+  return flattened;
 }
-const nestedArray = [1, [2, 3, [4, 5]], 6, [7, 8]];
-const largestElement = findLargestElement(nestedArray);
-console.log("Largest element:", largestElement);
+const nestedArray = [1, [2, 3], 4, [5, 6, [7, 8]]];
+const flattenedArray = flattenArray(nestedArray);
+console.log("Flattened array:", flattenedArray);
