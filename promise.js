@@ -456,14 +456,3 @@
 // // Expected Output: 1, 4, 3, 2 (demonstrates synchronous code first, then microtasks, then macrotasks)
 
 // module.exports = mongoose.model('User', userSchema);
-
-function capitalizeFirstLetterOfEachWord(str) {
-  const words = str.split(" ");
-  const capitalizedWords = words.map((word) => {
-    return word.charAt(0).toUpperCase() + word.slice(1);
-  });
-  return capitalizedWords.join(" ");
-}
-const inputString = "hello world this is a sample string";
-const capitalizedString = capitalizeFirstLetterOfEachWord(inputString);
-console.log("Capitalized string:", capitalizedString);
