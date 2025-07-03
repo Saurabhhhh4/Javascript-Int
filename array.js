@@ -65,4 +65,4 @@ function findMax(arr) {
 const arr = [3, 6, 8, 4, 9];
 
 const max = findMax(arr);
-console.log(max);
+// console.log(max);
