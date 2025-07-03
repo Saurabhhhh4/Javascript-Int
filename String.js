@@ -21,17 +21,55 @@
 // const result = factorial(n);
 // console.log(result);
 
-function prime(num) {
-  if (num <= 1) {
-    return false;
-  }
-  for (let i = 2; i * i <= num; i++) {
-    if (num % i === 0) {
-      return false;
-    }
-  }
-  return true;
+// function prime(num) {
+//   if (num <= 1) {
+//     return false;
+//   }
+//   for (let i = 2; i * i <= num; i++) {
+//     if (num % i === 0) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
+// const number = 2;
+// const result = prime(number);
+// console.log(result);
+
+// function evenNumber(num) {
+//   if (num % 2 === 0) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
+// const number = 5;
+// const result = evenNumber(number);
+// console.log(result);
+
+// function evenNumber(number) {
+//   const evenArray = [];
+//   for (let i = 0; i < number.length; i++) {
+//     if (number[i] % 2 === 0) {
+//       evenArray.push(number[i]);
+//     }
+//   }
+//   return evenArray;
+// }
+
+// const number = [1, 2, 3, 3, 4, 45, 6, 8];
+// const result = evenNumber(number);
+// console.log(result);
+
+function capital(str) {
+  const word = str.split(" ");
+
+  const capitalword = word.map((word) => {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  });
+  return capitalword.join(" ");
 }
-const number = 2;
-const result = prime(number);
-console.log(result);
+
+const input = "saurabh is good guy";
+const capitalleter = capital(input);
+console.log(capitalleter);
