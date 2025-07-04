@@ -61,15 +61,27 @@
 // const result = evenNumber(number);
 // console.log(result);
 
-function capital(str) {
-  const word = str.split(" ");
+// function capital(str) {
+//   const word = str.split(" ");
 
-  const capitalword = word.map((word) => {
-    return word.charAt(0).toUpperCase() + word.slice(1);
-  });
-  return capitalword.join(" ");
+//   const capitalword = word.map((word) => {
+//     return word.charAt(0).toUpperCase() + word.slice(1);
+//   });
+//   return capitalword.join(" ");
+// }
+
+// const input = "saurabh is good guy";
+// const capitalleter = capital(input);
+// console.log(capitalleter);
+
+function isPalindrome(str) {
+  const reversedStr = str.split("").reverse().join("");
+  return str === reversedStr;
 }
-
-const input = "saurabh is good guy";
-const capitalleter = capital(input);
-console.log(capitalleter);
+const inputString = "racecar";
+const isPalindromeResult = isPalindrome(inputString);
+if (isPalindromeResult) {
+  console.log(inputString, "is a palindrome.");
+} else {
+  console.log(inputString, "is not a palindrome.");
+}
