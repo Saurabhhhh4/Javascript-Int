@@ -67,13 +67,32 @@
 // const max = findMax(arr);
 // console.log(max);
 
-function factorial(n) {
-  if (n === 0 || n === 1) {
-    return 1;
+// function factorial(n) {
+//   if (n === 0 || n === 1) {
+//     return 1;
+//   } else {
+//     return n * factorial(n - 1);
+//   }
+// }
+// const number = 5;
+// const result = factorial(number);
+// console.log("Factorial of " + number + " is " + result);
+
+function fibonaccci(n) {
+  if (n <= 0) {
+    return [];
   } else {
-    return n * factorial(n - 1);
+    if (n === 1) {
+      return [0];
+    }
   }
+  const sequence = [0, 1];
+
+  for (let i = 2; i < n; i++) {
+    sequence.push(sequence[i - 1] + sequence[i - 2]);
+  }
+  return sequence;
 }
-const number = 5;
-const result = factorial(number);
-console.log("Factorial of " + number + " is " + result);
+const terms = 10;
+const fibonacciSequence = fibonaccci(terms);
+console.log(fibonacciSequence);
