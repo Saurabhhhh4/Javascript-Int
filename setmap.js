@@ -423,3 +423,12 @@ const uniqueSkills = [...new Set(allSkills)];
 
 console.log(uniqueSkills);
 // Output: [ 'JavaScript', 'React', 'Node.js', 'TypeScript' ]
+
+const person = {
+  name: "Rahul",
+  greet: function () {
+    console.log("Hello, my name is " + this.name);
+  },
+};
+
+setTimeout(person.greet, 1000);
