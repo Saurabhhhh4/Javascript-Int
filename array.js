@@ -78,21 +78,39 @@
 // const result = factorial(number);
 // console.log("Factorial of " + number + " is " + result);
 
-function fibonaccci(n) {
-  if (n <= 0) {
-    return [];
-  } else {
-    if (n === 1) {
-      return [0];
+// function fibonaccci(n) {
+//   if (n <= 0) {
+//     return [];
+//   } else {
+//     if (n === 1) {
+//       return [0];
+//     }
+//   }
+//   const sequence = [0, 1];
+
+//   for (let i = 2; i < n; i++) {
+//     sequence.push(sequence[i - 1] + sequence[i - 2]);
+//   }
+//   return sequence;
+// }
+// const terms = 10;
+// const fibonacciSequence = fibonaccci(terms);
+// console.log(fibonacciSequence);
+
+function flattenArray(arr) {
+  const flattened = [];
+  function flattenHelper(nestedArr) {
+    for (let item of nestedArr) {
+      if (Array.isArray(item)) {
+        flattenHelper(item); // Recursively flatten the nested array
+      } else {
+        flattened.push(item); // Push non-array items into the flattened array
+      }
     }
   }
-  const sequence = [0, 1];
-
-  for (let i = 2; i < n; i++) {
-    sequence.push(sequence[i - 1] + sequence[i - 2]);
-  }
-  return sequence;
+  flattenHelper(arr);
+  return flattened;
 }
-const terms = 10;
-const fibonacciSequence = fibonaccci(terms);
-console.log(fibonacciSequence);
+const nestedArray = [1, [2, 3], 4, [5, 6, [7, 8]]];
+const flattenedArray = flattenArray(nestedArray);
+console.log("Flattened array:", flattenedArray);

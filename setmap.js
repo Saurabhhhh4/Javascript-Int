@@ -388,18 +388,38 @@ const num = [1, 2, 2, 3, 4, 4, 5];
 //   'vegetable' => [ 'carrot', 'broccoli' ]
 // }
 
-const numbers = [1, 2, 3, 4, 5, 6];
-const grouped = {
-  even: [],
-  odd: [],
-};
+// const numbers = [1, 2, 3, 4, 5, 6];
+// const grouped = {
+//   even: [],
+//   odd: [],
+// };
 
-numbers.forEach((num) => {
-  if (num % 2 === 0) {
-    grouped.even.push(num);
-  } else {
-    grouped.odd.push(num);
-  }
-});
+// numbers.forEach((num) => {
+//   if (num % 2 === 0) {
+//     grouped.even.push(num);
+//   } else {
+//     grouped.odd.push(num);
+//   }
+// });
 
-console.log(grouped);
+// console.log(grouped);
+
+const developers = [
+  { name: "Alice", skills: ["JavaScript", "React"] },
+  { name: "Bob", skills: ["Node.js", "JavaScript"] },
+  { name: "Charlie", skills: ["React", "TypeScript"] },
+];
+
+// Step 1: Use flatMap to extract all skills into one array
+// [
+//   "JavaScript", "React",
+//   "Node.js", "JavaScript",
+//   "React", "TypeScript"
+// ]
+const allSkills = developers.flatMap((dev) => dev.skills);
+
+// Step 2: Create a Set to remove duplicates
+const uniqueSkills = [...new Set(allSkills)];
+
+console.log(uniqueSkills);
+// Output: [ 'JavaScript', 'React', 'Node.js', 'TypeScript' ]
