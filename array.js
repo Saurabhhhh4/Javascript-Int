@@ -123,21 +123,37 @@
 // arr.reverse();
 // console.log(arr);
 
-const chunkArray = (arr, len) => {
-  // Init chunked arr
-  const chunkedArr = [];
-  // Set index
-  let i = 0;
+// const chunkArray = (arr, len) => {
+//   // Init chunked arr
+//   const chunkedArr = [];
+//   // Set index
+//   let i = 0;
 
-  // Loop while index is less than the array length
-  while (i < arr.length) {
-    // Slice out from the index to the index + the chunk length nd push on to the chunked array
-    chunkedArr.push(arr.slice(i, i + len));
-    // Increment by chunk length
-    i += len;
-  }
+//   // Loop while index is less than the array length
+//   while (i < arr.length) {
+//     // Slice out from the index to the index + the chunk length nd push on to the chunked array
+//     chunkedArr.push(arr.slice(i, i + len));
+//     // Increment by chunk length
+//     i += len;
+//   }
 
-  return chunkedArr;
+//   return chunkedArr;
+// };
+// const res = chunkArray([1, 4, 5, 1, 3, 2, "d", 2], 2);
+// console.log(res);
+
+// Return true if anagram and false if not
+// ex. 'elbow' === 'below'
+// ex. 'Dormitory' === 'dirty room##'
+
+const isAnagram = (str1, str2) => {
+  return formatStr(str1) === formatStr(str2);
 };
-const res = chunkArray([1, 4, 5, 1, 3, 2, "d", 2], 2);
+
+//function to remove special char and sort to match the strings
+let formatStr = (str) => {
+  return str.replace(/[^\w]/g, "").toLowerCase().split("").sort().join("");
+};
+
+const res = isAnagram("Inch", "Chin");
 console.log(res);
