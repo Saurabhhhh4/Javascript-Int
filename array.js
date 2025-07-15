@@ -97,28 +97,47 @@
 // const fibonacciSequence = fibonaccci(terms);
 // console.log(fibonacciSequence);
 
-function flattenArray(arr) {
-  const flattened = [];
-  function flattenHelper(nestedArr) {
-    for (let item of nestedArr) {
-      if (Array.isArray(item)) {
-        flattenHelper(item); // Recursively flatten the nested array
-      } else {
-        flattened.push(item); // Push non-array items into the flattened array
-      }
-    }
+// function flattenArray(arr) {
+//   const flattened = [];
+//   function flattenHelper(nestedArr) {
+//     for (let item of nestedArr) {
+//       if (Array.isArray(item)) {
+//         flattenHelper(item); // Recursively flatten the nested array
+//       } else {
+//         flattened.push(item); // Push non-array items into the flattened array
+//       }
+//     }
+//   }
+//   flattenHelper(arr);
+//   return flattened;
+// }
+// const nestedArray = [1, [2, 3], 4, [5, 6, [7, 8]]];
+// const flattenedArray = flattenArray(nestedArray);
+// console.log("Flattened array:", flattenedArray);
+
+// let arr = [1, 2, 3, 4, 5];
+// let reversedArr = [...arr].reverse(); // or arr.slice().reverse()
+// console.log(reversedArr); // [5, 4, 3, 2, 1]
+
+// let arr1 = [10, 20, 30, 40, 50];
+// arr.reverse();
+// console.log(arr);
+
+const chunkArray = (arr, len) => {
+  // Init chunked arr
+  const chunkedArr = [];
+  // Set index
+  let i = 0;
+
+  // Loop while index is less than the array length
+  while (i < arr.length) {
+    // Slice out from the index to the index + the chunk length nd push on to the chunked array
+    chunkedArr.push(arr.slice(i, i + len));
+    // Increment by chunk length
+    i += len;
   }
-  flattenHelper(arr);
-  return flattened;
-}
-const nestedArray = [1, [2, 3], 4, [5, 6, [7, 8]]];
-const flattenedArray = flattenArray(nestedArray);
-console.log("Flattened array:", flattenedArray);
 
-let arr = [1, 2, 3, 4, 5];
-let reversedArr = [...arr].reverse(); // or arr.slice().reverse()
-console.log(reversedArr); // [5, 4, 3, 2, 1]
-
-let arr1 = [10, 20, 30, 40, 50];
-arr.reverse();
-console.log(arr);
+  return chunkedArr;
+};
+const res = chunkArray([1, 4, 5, 1, 3, 2, "d", 2], 2);
+console.log(res);
