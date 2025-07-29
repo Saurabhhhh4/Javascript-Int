@@ -41,15 +41,29 @@
 
 // console.log(findMissingNumberSort([3, 0, 1])); // Output: 2
 
-function findMissingNumberSet(arr) {
-  const numSet = new Set(arr);
-  const n = arr.length;
+// function findMissingNumberSet(arr) {
+//   const numSet = new Set(arr);
+//   const n = arr.length;
 
-  for (let i = 0; i <= n; i++) {
-    if (!numSet.has(i)) {
+//   for (let i = 0; i <= n; i++) {
+//     if (!numSet.has(i)) {
+//       return i;
+//     }
+//   }
+// }
+
+// console.log(findMissingNumberSet([3, 0, 1])); // Output: 2
+
+function findMissingNumberSort(arr) {
+  arr.sort((a, b) => a - b); // Sort the array
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] !== i) {
       return i;
     }
   }
+
+  return arr.length; // If all match, then missing is 'n'
 }
 
-console.log(findMissingNumberSet([3, 0, 1])); // Output: 2
+console.log(findMissingNumberSort([3, 0, 1])); // Output: 2
