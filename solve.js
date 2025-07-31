@@ -54,16 +54,67 @@
 
 // console.log(findMissingNumberSet([3, 0, 1])); // Output: 2
 
-function findMissingNumberSort(arr) {
-  arr.sort((a, b) => a - b); // Sort the array
+// function findMissingNumberSort(arr) {
+//   arr.sort((a, b) => a - b); // Sort the array
 
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] !== i) {
-      return i;
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] !== i) {
+//       return i;
+//     }
+//   }
+
+//   return arr.length; // If all match, then missing is 'n'
+// }
+
+// console.log(findMissingNumberSort([3, 0, 1])); // Output: 2
+
+function secondHighest(arr) {
+  const freqMap = {};
+
+  // Step 1: Count the frequency of each element
+  for (let str of arr) {
+    freqMap[str] = (freqMap[str] || 0) + 1;
+  }
+
+  // Step 2: Variables to track the highest and second highest frequency
+  let max1 = 0,
+    max2 = 0;
+  let first = "",
+    second = "";
+
+  for (let key in freqMap) {
+    const count = freqMap[key];
+
+    if (count > max1) {
+      max2 = max1;
+      second = first;
+
+      max1 = count;
+      first = key;
+    } else if (count > max2 && key !== first) {
+      max2 = count;
+      second = key;
     }
   }
 
-  return arr.length; // If all match, then missing is 'n'
+  return second;
 }
 
-console.log(findMissingNumberSort([3, 0, 1])); // Output: 2
+// Step 3: Test input with "d" added 5 times
+const arr = [
+  "a",
+  "b",
+  "c",
+  "b",
+  "a",
+  "a",
+  "d",
+  "d",
+  "d",
+  "d",
+  "d",
+  "a",
+  "a",
+  "a",
+];
+console.log(secondHighest(arr)); // Output: "a"
