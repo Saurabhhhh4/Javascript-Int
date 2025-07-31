@@ -141,6 +141,28 @@
 // const wordDict = ["apple", "pen"];
 // console.log(wordBreak(s, wordDict)); // ✅ Output: true
 
+// function wordBreak(s, wordDict) {
+//   const wordSet = new Set(wordDict);
+//   const dp = Array(s.length + 1).fill(false);
+//   dp[0] = true;
+
+//   for (let i = 1; i <= s.length; i++) {
+//     for (let j = 0; j < i; j++) {
+//       if (dp[j] && wordSet.has(s.substring(j, i))) {
+//         dp[i] = true;
+//         break;
+//       }
+//     }
+//   }
+
+//   return dp[s.length];
+// }
+
+// // Test case
+// const s = "applepenapple";
+// const wordDict = ["apple", "pen"];
+// console.log(wordBreak(s, wordDict)); // ✅ Output: true
+
 function wordBreak(s, wordDict) {
   const wordSet = new Set(wordDict);
   const dp = Array(s.length + 1).fill(false);
@@ -158,7 +180,12 @@ function wordBreak(s, wordDict) {
   return dp[s.length];
 }
 
-// Test case
-const s = "applepenapple";
-const wordDict = ["apple", "pen"];
-console.log(wordBreak(s, wordDict)); // ✅ Output: true
+// Test Case 1
+let s1 = "applepenapple";
+let wordDict1 = ["apple", "pen"];
+console.log(wordBreak(s1, wordDict1)); // true
+
+// Test Case 2
+let s2 = "catsandog";
+let wordDict2 = ["cats", "dog", "sand", "and", "cat"];
+console.log(wordBreak(s2, wordDict2)); // false
