@@ -68,53 +68,75 @@
 
 // console.log(findMissingNumberSort([3, 0, 1])); // Output: 2
 
-function secondHighest(arr) {
-  const freqMap = {};
+// function secondHighest(arr) {
+//   const freqMap = {};
 
-  // Step 1: Count the frequency of each element
-  for (let str of arr) {
-    freqMap[str] = (freqMap[str] || 0) + 1;
-  }
+//   // Step 1: Count the frequency of each element
+//   for (let str of arr) {
+//     freqMap[str] = (freqMap[str] || 0) + 1;
+//   }
 
-  // Step 2: Variables to track the highest and second highest frequency
-  let max1 = 0,
-    max2 = 0;
-  let first = "",
-    second = "";
+//   // Step 2: Variables to track the highest and second highest frequency
+//   let max1 = 0,
+//     max2 = 0;
+//   let first = "",
+//     second = "";
 
-  for (let key in freqMap) {
-    const count = freqMap[key];
+//   for (let key in freqMap) {
+//     const count = freqMap[key];
 
-    if (count > max1) {
-      max2 = max1;
-      second = first;
+//     if (count > max1) {
+//       max2 = max1;
+//       second = first;
 
-      max1 = count;
-      first = key;
-    } else if (count > max2 && key !== first) {
-      max2 = count;
-      second = key;
+//       max1 = count;
+//       first = key;
+//     } else if (count > max2 && key !== first) {
+//       max2 = count;
+//       second = key;
+//     }
+//   }
+
+//   return second;
+// }
+
+// // Step 3: Test input with "d" added 5 times
+// const arr = [
+//   "a",
+//   "b",
+//   "c",
+//   "b",
+//   "a",
+//   "a",
+//   "d",
+//   "d",
+//   "d",
+//   "d",
+//   "d",
+//   "a",
+//   "a",
+//   "a",
+// ];
+// console.log(secondHighest(arr)); // Output: "a"
+
+function wordBreak(s, wordDict) {
+  const wordSet = new Set(wordDict);
+  const dp = Array(s.length + 1).fill(false);
+  dp[0] = true;
+
+  for (let i = 1; i <= s.length; i++) {
+    for (let j = 0; j < i; j++) {
+      if (dp[j] && wordSet.has(s.substring(j, i))) {
+        dp[i] = true;
+        break;
+      }
     }
   }
 
-  return second;
+  return dp[s.length];
 }
 
-// Step 3: Test input with "d" added 5 times
-const arr = [
-  "a",
-  "b",
-  "c",
-  "b",
-  "a",
-  "a",
-  "d",
-  "d",
-  "d",
-  "d",
-  "d",
-  "a",
-  "a",
-  "a",
-];
-console.log(secondHighest(arr)); // Output: "a"
+// Test case
+const s = "applepenapple";
+const wordDict = ["apple", "pen"];
+console.log(wordBreak(s, wordDict)); // ✅ Output: true
