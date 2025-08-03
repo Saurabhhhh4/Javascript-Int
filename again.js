@@ -61,32 +61,44 @@
 // debounceLogger(7);
 // debounceLogger(8);
 
-function throttle(fn, delay) {
-  let throttled = false;
-  return function (...args) {
-    if (!throttled) {
-      fn.apply(this, args);
-      throttled = true;
-      setTimeout(() => {
-        throttled = false;
-      }, delay);
-    }
-  };
-}
+// function throttle(fn, delay) {
+//   let throttled = false;
+//   return function (...args) {
+//     if (!throttled) {
+//       fn.apply(this, args);
+//       throttled = true;
+//       setTimeout(() => {
+//         throttled = false;
+//       }, delay);
+//     }
+//   };
+// }
 
-const logger = (args) => {
-  console.log("Log Data :", args);
-};
+// const logger = (args) => {
+//   console.log("Log Data :", args);
+// };
 
-const throttleLogger = throttle(logger, 1000);
+// const throttleLogger = throttle(logger, 1000);
 
-throttleLogger(1);
-throttleLogger(2);
-throttleLogger(3);
-throttleLogger(4);
-throttleLogger(5);
+// throttleLogger(1);
+// throttleLogger(2);
+// throttleLogger(3);
+// throttleLogger(4);
+// throttleLogger(5);
 
-setTimeout(() => {
-  throttleLogger(6);
-  throttleLogger(7);
-}, 1100);
+// setTimeout(() => {
+//   throttleLogger(6);
+//   throttleLogger(7);
+// }, 1100);
+
+// let str1 = "Hello";
+// let str2 = "World";
+// let result = str1 + str2;
+// console.log(result);
+
+// let result = 3 + 2 + "7";
+// console.log(result);
+
+const arr = [1, 2, 3];
+arr[10] = 99;
+console.log(arr.length);
