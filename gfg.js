@@ -1,21 +1,26 @@
 // console.log(null ?? "default");
 // console.log(undefined ?? "default");
 // console.log(false ?? "default");
-<html>
-<head>
-</head>
-<body>
-    <button onclick="create()">
-        Click Here!
-    </button>
+/////////////////////////////////////////////////
+let petName = "Rocky"; // Global Variable
+myFunction();
 
-    <script>
-        function create() {
-            let geeks = document.createElement('geeks');
-            geeks.textContent = "Geeksforgeeks";
-            geeks.setAttribute('class', 'note');
-            document.body.appendChild(geeks);
-        }
-    </script>
-</body>
-</html>
+function myFunction() {
+  console.log("Inside myFunction - Type of petName:", typeof petName);
+  console.log("Inside myFunction - petName:", petName);
+}
+
+console.log("Outside myFunction - Type of petName:", typeof petName);
+console.log("Outside myFunction - petName:", petName);
+///////////////////////////
+// let x = 0;
+// console.log(x++);
+// console.log(++x);
+////////////////////////////////////
+let x;
+console.log(x); // undefined
+
+function foo(a) {
+  console.log(a); // undefined if no argument is passed
+}
+foo();
