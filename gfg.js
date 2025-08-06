@@ -75,6 +75,6 @@
 // console.log(y); // ???
 ///////////////////////////////////
 
-console.log(typeof undeclaredVar); // ???
-console.log(typeof y); // ???
-let y = 1;
+// console.log(typeof undeclaredVar); // ???
+// console.log(typeof y); // ???
+// let y = 1;

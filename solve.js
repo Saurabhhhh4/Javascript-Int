@@ -210,3 +210,24 @@
 // const s = "applepenapple";
 // const wordDict = ["apple", "pen"];
 // console.log(wordBreak(s, wordDict)); // ✅ Output: true
+
+function sumToSingleDigit(input) {
+  const [left, right] = input.split(">").map((s) => s.trim());
+  let num = parseInt(left);
+
+  // Function to repeatedly sum digits until single digit
+  function getSingleDigitSum(n) {
+    while (n >= 10) {
+      n = n
+        .toString()
+        .split("")
+        .reduce((sum, digit) => sum + parseInt(digit), 0);
+    }
+    return n;
+  }
+
+  const result = getSingleDigitSum(num);
+  console.log(result); // Output
+}
+
+sumToSingleDigit("123456 > 21");
